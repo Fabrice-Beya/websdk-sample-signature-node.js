@@ -23,9 +23,7 @@ app.post('/', (req, res) => {
   const hash = crypto.createHmac('sha256', process.env.API_SECRET).update(msg).digest('base64')
   const signature = Buffer.from(`${process.env.API_KEY}.${req.body.meetingNumber}.${timestamp}.${req.body.role}.${hash}`).toString('base64')
 
-  res.json({
-    signature: signature
-  })
+  res.send(signature)
 })
 
 
